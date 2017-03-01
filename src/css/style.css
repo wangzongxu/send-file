@@ -6,24 +6,6 @@ html,body{
 body>div:nth-child(3){
   height: 100%
 }
-.headerNav {
-    position: absolute;
-    width: 70%;
-    height: 63%;
-    overflow: auto;
-    transition: all .3s ease-in-out 0s;
-    top: -120%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background-color: #ffffff;
-    z-index: 1
-}
-
-.headerNav.show {
-    top: 0;
-    bottom: 0;
-}
 
 .header {
     margin-top: 20px;
@@ -44,15 +26,6 @@ body>div:nth-child(3){
 .flex-between {
     display: flex;
     justify-content: space-between;
-}
-
-.imgRadio>label {
-    padding-left: 7px
-}
-
-.imgRadio>label>input {
-    vertical-align: sub;
-    margin-right: 5px
 }
 
 .fileList {
@@ -76,4 +49,8 @@ body>div:nth-child(3){
     justify-content: center;
     align-items: center;
     font-size: 30px;
+}
+.progress-bar-success,.progress-bar-warning,.progress-bar-danger,.progress-bar-info{
+  color: #ffffff;
+  text-align: center;
 }

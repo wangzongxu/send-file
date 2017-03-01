@@ -25,7 +25,7 @@ app.post('/fileUpload',function(req,res){
     }
     let rs=fs.createReadStream(files.fileName.path);
     let ws=fs.createWriteStream('./src/files/'+files.fileName.name);
-    rs.pipe(ws);
+    rs.pipe(ws);//pipe居然是同步的
     console.log('收到文件:',files.fileName.name)
     let data={
        code:200,
