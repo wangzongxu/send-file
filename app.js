@@ -2,13 +2,13 @@ var express=require('express')
 var app=express();
 var path=require('path');
 var fs=require('fs');
+var os=require('os');
 var formidable=require('formidable');
 
 app.get('/',function(req,res){
   console.log('收到访问请求:',req.headers.host)
   res.sendFile(path.resolve('./src/index.html'));
 })
-
 app.use(express.static(path.join(__dirname,'./src/')));
 
 app.post('/fileUpload',function(req,res){
@@ -37,5 +37,15 @@ app.post('/fileUpload',function(req,res){
 });
 
 app.listen(8080,function(){
-  console.log('正在监听8080端口...')
+  console.log('正在监听8080端口...');
+  var ifaces=os.networkInterfaces();
+  for (var dev in ifaces) {
+    var alias=0;
+    ifaces[dev].forEach(function(details){
+      if (details.family=='IPv4') {
+        console.log(dev+(alias?':'+alias:''),details.address);
+        ++alias;
+      }
+    });
+  }
 })
