@@ -1,12 +1,17 @@
 var upload = {
     data:{
       fileList:[],//选择的文件
-      count:0//发送中的数量
+      count:0,//发送中的数量
+      gif:'./image/hardcore-forking.gif',
+      png:'./image/hardcore-forking.png'
     },
     init: function(){
         this.eventListener()
     },
     eventListener: function(){
+        document.addEventListener('contextmenu',function(e){
+          e.preventDefault()
+        })
         $('input[name=single_upload_file]').on('change', function(e) {//文件选择
             upload.data.fileList = this.files;
         })
@@ -42,6 +47,7 @@ var upload = {
         var form = new FormData();
         form.append('fileName',file);
         upload.data.count++;
+        if(upload.data.count>0){$('.picture>img')[0].setAttribute('src',upload.data.gif)}
         this.insertContent(fileName,file);
 
         var xhr=new XMLHttpRequest();
@@ -68,6 +74,7 @@ var upload = {
           if(loaded>=100){
              upload.changeProgressState(fileName,'success');
              upload.data.count--;
+             if(upload.data.count<=0){$('.picture>img')[0].setAttribute('src',upload.data.png)}
           }
         })
         xhr.send(form);
@@ -99,8 +106,3 @@ window.addEventListener('DOMContentLoaded',function(){
    }
    upload.init()
 })
-// <div class="progress">
-//     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-//         <span>45%</span>
-//     </div>
-// </div>
